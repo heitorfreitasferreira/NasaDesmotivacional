@@ -20,6 +20,10 @@ public class Imagem {
   private static int FONT_SIZE = 12;
 
   public File cria(InputStream fileObject, String nomeArquivo, String frase) throws Exception {
+    return cria(fileObject, nomeArquivo, frase, false);
+  }
+
+  public File cria(InputStream fileObject, String nomeArquivo, String frase, boolean save) throws Exception {
 
     // leitura da imagem
 
@@ -58,8 +62,8 @@ public class Imagem {
     // graphics.drawString(frase, largura / 2 - Ilength / 2, altura / 2 + IHeight /
     // 2);
     drawString(graphics, frase, largura / 2 - getXPos(frase, graphics), altura / 2);
-
-    ImageIO.write(novaImagem, "png", new File(nomeArquivo + ".png"));
+    if (save)
+      ImageIO.write(novaImagem, "png", new File(nomeArquivo + ".png"));
 
     return new File(nomeArquivo + ".png");
   }
